@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>TITLE SMAE SAME HERE</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+
+
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class='container'>
+                <ul class='navbar-nav'>
+                    <li class='nav-item'><a href="{% url 'index' %}" class = "nav-link">Home Page</a></li>
+                    <li class='nav-item'><a href="{% url 'admin:index' %}" class = "nav-link">Admin</a></li>
+                    <li class='nav-item'><a href="{% url 'first_app:register' %}" class = "nav-link">Register Here</a></li>
+                    <li class='nav-item'><a href="{% url 'special' %}" class = "nav-link">Special Page</a></li>
+
+                    {% if user.is_authenticated %}
+                    <li class='nav-item'><a href="{% url 'user_logout' %}" class = "nav-link">Logout</a></li>
+                    
+                    {% else %}
+                    <li class='nav-item'><a href="{% url 'first_app:user_login' %}" class = "nav-link">Login</a></li>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </nav>
+        
+        <div class='container'> 
+            {% block body_block %}
+            <!-- anything inside will be unique to other html -->
+            {% endblock %}
+        </div>
+
+
+    </body>
+</html>
